@@ -41,38 +41,120 @@
 
     </thead>
 
-      <td>Total Subscribers</td><td><canvas id="YourChartNameWithoutSpacesHere" width="400" height="150"></canvas></td>
+      <td>Views</td>
+      <td><canvas id="views" width="2400" height="120"></canvas></td>
 
      </td>
 
 
   </table>
 
+<table>
+        <td>Comments</td>
+        <td><canvas id="comments" width="2400" height="100"></canvas></td>
+</table>
+
+<table>
+       <td>Likes</td>
+       <td><canvas id="likes" width="2400" height="100"></canvas></td>
+</table>
+
+<table>
+      <td>Dislikes</td>
+      <td><canvas id="dislikes" width="2400" height="100"></canvas></td>
+</table>
+
   <script>
  
         // bar chart data
 
             var barData = {
-                labels : [ "April","May","June","July","August","September" ],
+                labels : {{ video_number }},
                 datasets : [
                     {
                         fillColor : "#48A497",
                         strokeColor : "#48A4D1",
-                        data : {{ YourColumnNameHere }}
+                        data : {{ views }}
                     }
                 ]
             }
 
             // get bar chart canvas
 
-            var YourChartNameWithoutSpacesHere = document.getElementById("YourChartNameWithoutSpacesHere").getContext("2d");
+            var views = document.getElementById("views").getContext("2d");
 
             // draw bar chart
 
-            new Chart(YourChartNameWithoutSpacesHere).Bar(barData);
+            new Chart(views).Bar(barData);
 
+        // bar chart data
+
+        var barData2 = {
+                labels : {{ video_number }},
+                datasets : [
+                    {
+                        fillColor : "#48A497",
+                        strokeColor : "#48A4D1",
+                        data : {{ comments }}
+                    }
+                ]
+            }
+
+            // get bar chart canvas
+
+            var comments = document.getElementById("comments").getContext("2d");
+
+            // draw bar chart
+
+            new Chart(comments).Bar(barData2);
+
+        // bar chart data
+
+        var barData3 = {
+                labels : {{ video_number }},
+                datasets : [
+                    {
+                        fillColor : "#48A497",
+                        strokeColor : "#48A4D1",
+                        data : {{ likes }}
+                    }
+                ]
+            }
+
+        // get bar chart canvas
+
+        var likes = document.getElementById("likes").getContext("2d");
+
+        // draw bar chart
+
+        new Chart(likes).Bar(barData3);
+
+        // bar chart data
+
+        var barData4 = {
+                labels : {{ video_number }},
+                datasets : [
+                    {
+                        fillColor : "#48A497",
+                        strokeColor : "#48A4D1",
+                        data : {{ dislikes }}
+                    }
+                ]
+            }
+
+            // get bar chart canvas
+
+            var dislikes = document.getElementById("dislikes").getContext("2d");
+
+            // draw bar chart
+
+            new Chart(dislikes).Bar(barData4);
 
        </script>
+
+<h1>Video Number and Description</h1>
+
+<p> {{ video_list }} </p>
 
 
 <!-- JS-based components. -->

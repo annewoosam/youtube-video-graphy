@@ -10,7 +10,7 @@ db = SQLAlchemy()
 
 # created import allowing connection to database
 
-from model import connect_to_db, YourModelNameTitleCaseSingularStats, db
+from model import connect_to_db, Video, db
 
 app = Flask(__name__)
 
@@ -25,21 +25,39 @@ import crud
 
 @app.route('/')
 
-def all_YourModelNameLowerCasePluralStats():
+def all_videos():
 
-    stats=crud.get_YourModelNameLowerCasePlural()
+    stats=crud.get_videos()
     
-    YourVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourVariableName).all()]
+    channel_name=[q[0] for q in db.session.query(Video.channel_name).all()]
 
-    YourNextVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourNextVariableName).all()]
-     
-    #repeat till next to last variable accounted for
-      
-    YourLastVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourLastVariableName).all()]
-    
-    # repeat through all columns needed
+    video_number=[q[0] for q in db.session.query(Video.video_number).all()]
+       
+    video_title=[q[0] for q in db.session.query(Video.video_title).all()]
 
-    return render_template('YourModelNameLowerCasePlural.html', YourVariable_Name=YourVariable_Name, YourNextVariableName=YourNextVariableName, YourLastVariableName=YourLastVariableName)
+    length_hours=[q[0] for q in db.session.query(Video.length_hours).all()]
+
+    length_minutes=[q[0] for q in db.session.query(Video.length_minutes).all()]
+
+    length_seconds=[q[0] for q in db.session.query(Video.length_seconds).all()]
+
+    views=[q[0] for q in db.session.query(Video.views).all()]
+
+    release_date=[q[0] for q in db.session.query(Video.release_date).all()]
+
+    comments=[q[0] for q in db.session.query(Video.comments).all()]
+
+    likes=[q[0] for q in db.session.query(Video.likes).all()]
+
+    dislikes=[q[0] for q in db.session.query(Video.dislikes).all()]
+
+    description=[q[0] for q in db.session.query(Video.description).all()]
+
+    last_updated=[q[0] for q in db.session.query(Video.last_updated).all()]
+
+    video_list= db.session.query(Video.video_number, Video.description).all()
+
+    return render_template('videos.html', channel_name=channel_name, video_number=video_number, video_title=video_title, length_hours=length_hours, length_minutes=length_minutes, length_seconds=length_seconds, views=views, release_date=release_date, comments=comments, likes=likes, dislikes=dislikes, description=description, last_updated=last_updated, video_list=video_list)
 
 if __name__ == '__main__':
 

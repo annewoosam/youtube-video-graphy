@@ -1,27 +1,37 @@
 """CRUD operations."""
 
-from model import db, YourClassNameHereInTitleCaseSingular, connect_to_db
+from model import db, Video, connect_to_db
 
 import datetime
 
 
-def create_YourClassNameHereInLowerCaseSingular(YourColumnNamesHereSeparatedByCommasExcludingPrimaryKeyColumn):
+def create_video(channel_name, video_number, video_title, length_hours, length_minutes, length_seconds, views, release_date, comments, likes, dislikes, description, last_updated):
    
 
-    YourClassNameHereInLowerCaseSingular = YourClassNameHereInTitleCaseSingular(YourColumnName=YourColumnName,
-                  YourNextColumnNameUntilLast=YourNextColumnNameUntilLast,
-                  YourLastColumnName=YourLastColumnName)
+    video = Video(channel_name=channel_name,
+                  video_number=video_number,
+                  video_title=video_title,
+                  length_hours=length_hours,
+                  length_minutes=length_minutes,
+                  length_seconds=length_seconds,
+                  views=views,
+                  release_date=release_date,
+                  comments=comments,
+                  likes=likes,
+                  dislikes=dislikes,
+                  description=description,
+                  last_updated=last_updated)
 
-    db.session.add(YourClassNameHereInLowerCaseSingular)
+    db.session.add(video)
 
     db.session.commit()
 
-    return YourClassNameHereInLowerCaseSingular
+    return video
 
-def get_creators():
-    """Return all rows of YourClassNameHereInLowerCaseSingular monthly data."""
+def get_videos():
+    """Return all rows of video monthly data."""
 
-    return YourClassNameHereInTitleCaseSingular.query.all()
+    return Video.query.all()
  
 if __name__ == '__main__':
     from server import app
